@@ -19,11 +19,14 @@ public class PowerUpManager : MonoBehaviour
     private Coroutine speedCoroutine = null;
     private Coroutine strengthCoroutine = null;
     private Coroutine enemySpeedCoroutine = null;
+    private AudioSource source;
+    [SerializeField] private AudioClip shieldClip;
 
     void Start(){
         playerMovement = GetComponent<PlayerMovement>();
         projectileScript = GetComponent<ShootingScript>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManagerScript>();
+        source = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D other){
@@ -82,7 +85,10 @@ public class PowerUpManager : MonoBehaviour
             else{
                 playerMovement.ToggleShield();   
             }
-
+            
+            if(shieldClip!=null){
+                source.PlayOneShot(shieldClip);
+            }
             shieldCoroutine = StartCoroutine(Deactivate(shieldTime, "shield"));            
         }
     }
