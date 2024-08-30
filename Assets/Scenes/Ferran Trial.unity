@@ -823,6 +823,7 @@ MonoBehaviour:
   minSpawnDelay: 0.2
   maxSpawnDelay: 4
   parent: {fileID: 1273089425}
+  moreSpawnsTime: 60
 --- !u!4 &1125071325
 Transform:
   m_ObjectHideFlags: 0

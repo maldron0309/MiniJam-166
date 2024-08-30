@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     public float minSpawnDelay = 1f; 
     public float maxSpawnDelay = 5f; 
     public Transform parent;
+    public int moreSpawnsTime = 20;
 
     void Start()
     {
@@ -28,7 +29,13 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnRandomObject()
     {
-        int randomSpawnIndex = Random.Range(0, spawnPoints.Count);
+        int randomSpawnIndex;
+        if(Time.time < moreSpawnsTime){
+            randomSpawnIndex = Random.Range(0, spawnPoints.Count-2);
+        }
+        else{
+            randomSpawnIndex = Random.Range(0, spawnPoints.Count);
+        }
         Transform spawnPoint = spawnPoints[randomSpawnIndex];
 
         int randomObjectIndex = Random.Range(0, objectsToSpawn.Count);
