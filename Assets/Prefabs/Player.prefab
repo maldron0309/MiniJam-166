@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6443363746990812189}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,3 +208,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 7579698565906691957, guid: 0d92252b2d16b5c49a32a6336d1d9415, type: 3}
   firePoint: {fileID: 1931665076409416296}
+  projectileSpeed: 10
