@@ -12,6 +12,11 @@ public class ProjectileScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    public void Initialize(Vector2 mov, float s){
+        movement = mov;
+        speed = s;
+    }
+
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);

@@ -6,6 +6,7 @@ public class ShootingScript : MonoBehaviour
 
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private float projectileSpeed = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,8 +21,9 @@ public class ShootingScript : MonoBehaviour
 
     private void OnAttack(InputValue value){
         if(firePoint != null && projectile != null){
-            GameObject newProjectile = Instantiate(projectile, firePoint.position, firePoint.rotation);
-            //From newProjectile we can acces the projectile to edit some of its properties like the velocity or the rotation
+            GameObject newProjectileObject = Instantiate(projectile, firePoint.position, firePoint.rotation);
+            ProjectileScript newProjectile = newProjectileObject.GetComponent<ProjectileScript>();
+            newProjectile.Initialize(firePoint.right, projectileSpeed);
         }
     }
 }
