@@ -26,6 +26,7 @@ public class ScoreManagerScript : MonoBehaviour
         }
 
         scoreText.text = "Score: " + score.ToString();
+        PlayerPrefs.SetInt("score", score);
     }
 
     public void EnemyKilled(){
