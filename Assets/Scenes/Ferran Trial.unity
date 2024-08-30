@@ -1198,6 +1198,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1273089424}
     - target: {fileID: 5733983434152911633, guid: 63661a7d3191ae14c99c214b82888763, type: 3}
+      propertyPath: shieldClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f38892167720886489ce4384f13ea7e3, type: 3}
+    - target: {fileID: 5733983434152911633, guid: 63661a7d3191ae14c99c214b82888763, type: 3}
       propertyPath: enemySpeedIncrease
       value: 2
       objectReference: {fileID: 0}

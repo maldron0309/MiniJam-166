@@ -15,6 +15,9 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemies());
+        minSpawnDelay = 1f;
+        maxSpawnDelay = 5f;
+        timeAlive = 0f;
     }
     void Update(){
         if(timeAlive > 30){
@@ -55,6 +58,6 @@ public class EnemySpawner : MonoBehaviour
         GameObject newEnemyObject = Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
         newEnemyObject.transform.parent = parent;
         Enemy newEnemy = newEnemyObject.GetComponent<Enemy>();
-        newEnemy.Initialize(spawnPoint.right * -1);
+        newEnemy.Initialize(spawnPoint.right * -1, timeAlive);
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private float speed = 2f;
-   
     private int life = 3;
     [SerializeField] private Transform lifebarFilling;
     private Vector2 direction;
@@ -17,11 +16,12 @@ public class Enemy : MonoBehaviour
     void Start(){
         maxHealth = life;
         rb = GetComponent<Rigidbody2D>();
+
     }
 
-    public void Initialize(Vector2 dir){
+    public void Initialize(Vector2 dir, float time){
         direction = dir;
-        speed = Random.Range(0.8f + (Time.time /10), 3 + (Time.time /10));
+        speed = Random.Range(0.8f + (time /10), 3 + (time /10));
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManagerScript>();
     }
 
