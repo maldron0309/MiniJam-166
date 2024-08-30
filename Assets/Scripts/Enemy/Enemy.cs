@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     public void Initialize(Vector2 dir){
         direction = dir;
-        speed = Random.Range(0.8f, 3);
+        speed = Random.Range(0.8f + (Time.time /10), 3 + (Time.time /10));
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManagerScript>();
     }
 
