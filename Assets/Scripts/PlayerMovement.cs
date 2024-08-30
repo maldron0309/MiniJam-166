@@ -16,6 +16,15 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Update(){
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0;
+        Vector3 direction = mousePosition - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+    }
+
     private void FixedUpdate()
     {
         if(!dragg){
@@ -33,4 +42,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove (InputValue value) {
         movement = value.Get<Vector2>();
     }
+
+    
 }
