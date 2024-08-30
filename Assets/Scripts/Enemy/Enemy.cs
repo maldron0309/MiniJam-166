@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
      [SerializeField] private List<GameObject> powerups;
     private Rigidbody2D rb;
     private int maxHealth;
+    private ScoreManagerScript scoreManager;
 
     void Start(){
         maxHealth = life;
@@ -22,12 +23,12 @@ public class Enemy : MonoBehaviour
     public void Initialize(Vector2 dir){
         direction = dir;
         speed = Random.Range(0.8f, 3);
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManagerScript>();
     }
 
     void Update()
     {
         rb.linearVelocity = speed * direction;
-
     }
 
     public void GetDamage(int damage){
@@ -49,9 +50,13 @@ public class Enemy : MonoBehaviour
             int randomObjectIndex = Random.Range(0, powerups.Count);
             GameObject objectToDrop = powerups[randomObjectIndex];
             Instantiate(objectToDrop, this.transform.position, Quaternion.identity);
+            scoreManager.EnemyKilled();
         }
         Destroy(gameObject);
     }
 
+    public void IncreaseSpeed(float s) {
+        this.speed *= s;
+    }
 
 }
