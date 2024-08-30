@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public List<Transform> spawnPoints; 
     public float minSpawnDelay = 1f; 
     public float maxSpawnDelay = 5f; 
+    public Transform parent;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject objectToSpawn = objectsToSpawn[randomObjectIndex];
 
         GameObject newEnemyObject = Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
+        newEnemyObject.transform.parent = parent;
         Enemy newEnemy = newEnemyObject.GetComponent<Enemy>();
         newEnemy.Initialize(spawnPoint.right * -1);
     }

@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class PowerUpManager : MonoBehaviour
 {
+    private ScoreManagerScript scoreManager;
+    [SerializeField] private GameObject enemies;
     [SerializeField] private float shieldTime = 5f;
     [SerializeField] private float speedIncrease = 10f;
     [SerializeField] private float speedTime = 5f;
+    [SerializeField] private int strengthIncrease = 3;
+    [SerializeField] private float  strengthTime = 5f;
+    [SerializeField] private float enemySpeedIncrease = 1.5f;
+    [SerializeField] private float enemySpeedTime = 5f;
+    [SerializeField] private int scoreIncrease = 20;
     private PlayerMovement playerMovement;
+    private ShootingScript projectileScript;
     private Coroutine shieldCoroutine = null;
     private Coroutine speedCoroutine = null;
+    private Coroutine strengthCoroutine = null;
+    private Coroutine enemySpeedCoroutine = null;
 
     void Start(){
         playerMovement = GetComponent<PlayerMovement>();
+        projectileScript = GetComponent<ShootingScript>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManagerScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D other){
@@ -25,8 +37,14 @@ public class PowerUpManager : MonoBehaviour
                 case "SpeedPowerUp":
                     IncreaseSpeed();
                     break;
-                case "HealthPowerUp":
-                    GainHealth();
+                case "StrengthPowerUp":
+                    IncreaseStrength();
+                    break;
+                case "EnemiesSpeed":
+                    EnemySpeed();
+                    break;
+                case "ScorePowerUp":
+                    scoreManager.PowerUp();
                     break;
                 default:
                     Debug.Log("Unknown powerup: " + powerup);
@@ -36,6 +54,8 @@ public class PowerUpManager : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+
 
     private void IncreaseSpeed()
     {
@@ -73,8 +93,43 @@ public class PowerUpManager : MonoBehaviour
         }
     }
 
-    private void GainHealth(){
-        
+    private void IncreaseStrength(){
+        if(projectileScript != null){
+            if(strengthCoroutine != null){
+                StopCoroutine(strengthCoroutine);                
+            }
+            else{
+                   projectileScript.IncreaseStrength(strengthIncrease);
+            }
+
+            strengthCoroutine = StartCoroutine(Deactivate(strengthTime, "strength"));            
+        }
+    }
+    private void DeactivateStrength(){
+        if(projectileScript!= null){
+            projectileScript.IncreaseStrength(-1);
+        }
+    }
+
+    private void EnemySpeed(){
+        if(enemies!= null){
+            if(enemySpeedCoroutine!= null){
+                StopCoroutine(enemySpeedCoroutine);                
+            }
+            else{
+                foreach(Transform enemy in enemies.transform){
+                    enemy.GetComponent<Enemy>().IncreaseSpeed(enemySpeedIncrease);
+                }
+            }
+            enemySpeedCoroutine = StartCoroutine(Deactivate(enemySpeedIncrease, "enemiesSpeed"));
+        }
+    }
+    private void DeactivateEnemySpeed(){
+        if(enemies!= null){
+            foreach(Transform enemy in enemies.transform){
+                enemy.GetComponent<Enemy>().IncreaseSpeed(1/enemySpeedIncrease);
+            }
+        }
     }
 
     private IEnumerator Deactivate(float delay, string whatToCall){
@@ -84,10 +139,17 @@ public class PowerUpManager : MonoBehaviour
                 DeactivateShield();
                 shieldCoroutine = null;
                 break;
-                
             case "speed":
                 DeactivateSpeed();
                 speedCoroutine = null;
+                break;
+            case "strength":
+                DeactivateStrength();
+                strengthCoroutine = null;
+                break;
+            case "enemiesSpeed":
+                DeactivateEnemySpeed();
+                enemySpeedCoroutine = null;
                 break;
             default:
                 Debug.Log("Unknown powerup deactivation: " + whatToCall);
