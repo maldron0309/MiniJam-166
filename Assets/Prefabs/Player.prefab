@@ -241,6 +241,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragg: 1
   speed: 5
+  input: {fileID: 0}
+  sprite: {fileID: 0}
+  spawnPoint: {fileID: 0}
 --- !u!114 &6443363746990812189
 MonoBehaviour:
   m_ObjectHideFlags: 0

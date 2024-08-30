@@ -1,19 +1,27 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
 
     //To change between movement types
     public bool dragg = false;
+    public float spawnDelay = 1.0f;
 
     [SerializeField] private float speed = 5;
+    [SerializeField] private PlayerInput input;
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Transform spawnPoint;
     private Vector2 movement;
     private Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        input = GetComponent<PlayerInput>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update(){
@@ -41,6 +49,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMove (InputValue value) {
         movement = value.Get<Vector2>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other){
+        if(other.CompareTag("Enemy")){
+            StartCoroutine(Die());
+        }
+    }
+
+    IEnumerator Die(){
+        sprite.enabled = false;
+        input.enabled = false;
+        yield return new WaitForSeconds(spawnDelay);
+        transform.position = spawnPoint.position;
+        sprite.enabled = true;
+        input.enabled = true;
     }
 
     
