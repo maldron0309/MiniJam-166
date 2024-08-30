@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
+    private float timeAlive = 0f;
     public List<GameObject> objectsToSpawn; 
     public List<Transform> spawnPoints; 
     public float minSpawnDelay = 1f; 
@@ -14,6 +15,16 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemies());
+    }
+    void Update(){
+        if(timeAlive > 30){
+            maxSpawnDelay = 3;
+        }
+        if(timeAlive > 60){
+            minSpawnDelay = 0.5f;
+            maxSpawnDelay = 2.5f;
+        }
+        timeAlive += Time.deltaTime;
     }
 
     IEnumerator SpawnEnemies()

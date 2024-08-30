@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6210325289317382381}
   - component: {fileID: 4376571444377947054}
   - component: {fileID: 5678536403086662561}
+  - component: {fileID: 3699919617068081675}
   m_Layer: 0
   m_Name: EnemiesSpeed
   m_TagString: PowerUp
@@ -134,3 +135,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.3888888, y: 1.3888888}
   m_EdgeRadius: 0
+--- !u!114 &3699919617068081675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183454659808936107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2df1e86d24f5b64a94efab9911d32c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
