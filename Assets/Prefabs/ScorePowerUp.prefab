@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3903593761448022919}
   - component: {fileID: 8708019832431426179}
   - component: {fileID: 6744088655517300408}
+  - component: {fileID: -5990655188127070862}
   m_Layer: 0
   m_Name: ScorePowerUp
   m_TagString: PowerUp
@@ -134,3 +135,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1111112, y: 1.1111112}
   m_EdgeRadius: 0
+--- !u!114 &-5990655188127070862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5437879784843734347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2df1e86d24f5b64a94efab9911d32c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
