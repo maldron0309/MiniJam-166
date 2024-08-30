@@ -5,8 +5,11 @@ using UnityEngine;
 public class PowerUpManager : MonoBehaviour
 {
     [SerializeField] private float shieldTime = 5f;
+    [SerializeField] private float speedIncrease = 10f;
+    [SerializeField] private float speedTime = 5f;
     private PlayerMovement playerMovement;
     private Coroutine shieldCoroutine = null;
+    private Coroutine speedCoroutine = null;
 
     void Start(){
         playerMovement = GetComponent<PlayerMovement>();
@@ -36,19 +39,32 @@ public class PowerUpManager : MonoBehaviour
 
     private void IncreaseSpeed()
     {
+        if(playerMovement != null){
+            if(speedCoroutine != null){
+                StopCoroutine(speedCoroutine);
+            }
+            else{
+                playerMovement.SetSpeed(speedIncrease);
+            }
+            speedCoroutine = StartCoroutine(Deactivate(speedTime, "speed"));
+        }
+    }
+    private void DeactivateSpeed(){
+        if(playerMovement!= null){
+            playerMovement.SetSpeed(-1);
+        }
     }
 
     private void Shield(){
         if(playerMovement != null){
             if(shieldCoroutine != null){
-                StopCoroutine(shieldCoroutine);
-                shieldCoroutine = StartCoroutine(Deactivate(shieldTime, "shield"));                
+                StopCoroutine(shieldCoroutine);               
             }
             else{
-                playerMovement.ToggleShield();
-                shieldCoroutine = StartCoroutine(Deactivate(shieldTime, "shield"));    
+                playerMovement.ToggleShield();   
             }
-            
+
+            shieldCoroutine = StartCoroutine(Deactivate(shieldTime, "shield"));            
         }
     }
     private void DeactivateShield(){
@@ -67,6 +83,11 @@ public class PowerUpManager : MonoBehaviour
             case "shield":
                 DeactivateShield();
                 shieldCoroutine = null;
+                break;
+                
+            case "speed":
+                DeactivateSpeed();
+                speedCoroutine = null;
                 break;
             default:
                 Debug.Log("Unknown powerup deactivation: " + whatToCall);

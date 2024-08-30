@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float spawnDelay = 1.0f;
 
     [SerializeField] private float speed = 5;
+    private float originalSpeed;
     [SerializeField] private PlayerInput input;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Transform spawnPoint;
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         input = GetComponent<PlayerInput>();
         sprite = GetComponent<SpriteRenderer>();
+        originalSpeed = speed;
     }
 
     private void Update(){
@@ -86,5 +88,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SetSpeed(float s){
+        speed = s;
+        if (s < 0){
+            speed = originalSpeed;
+        }
+    }
     
 }
