@@ -13,7 +13,6 @@ public class PowerUpManager : MonoBehaviour
     [SerializeField] private float  strengthTime = 5f;
     [SerializeField] private float enemySpeedIncrease = 1.5f;
     [SerializeField] private float enemySpeedTime = 5f;
-    [SerializeField] private int scoreIncrease = 20;
     private PlayerMovement playerMovement;
     private ShootingScript projectileScript;
     private Coroutine shieldCoroutine = null;
@@ -121,7 +120,7 @@ public class PowerUpManager : MonoBehaviour
                     enemy.GetComponent<Enemy>().IncreaseSpeed(enemySpeedIncrease);
                 }
             }
-            enemySpeedCoroutine = StartCoroutine(Deactivate(enemySpeedIncrease, "enemiesSpeed"));
+            enemySpeedCoroutine = StartCoroutine(Deactivate(enemySpeedTime, "enemiesSpeed"));
         }
     }
     private void DeactivateEnemySpeed(){
