@@ -28,24 +28,24 @@ public class Enemy : MonoBehaviour
     {
         rb.linearVelocity = speed * direction;
 
-        if (transform.position.x < -10f) 
-        {
-            Die();
-        }
     }
 
     public void GetDamage(int damage){
         life -= damage;
         float healthPercent = (float)life / maxHealth;
         lifebarFilling.localScale = new Vector2(healthPercent, lifebarFilling.localScale.y);
+        bool drop = true;
+        if(damage == 1000000){
+            drop = false;
+        }
         if(life <= 0){
-            Die();
+            Die(drop);
         }
     }
 
-    private void Die(){
+    private void Die(bool drop){
         int isDrop = Random.Range(0, 100);
-        if (isDrop <= dropPercentage){
+        if (isDrop <= dropPercentage && drop){
             int randomObjectIndex = Random.Range(0, powerups.Count);
             GameObject objectToDrop = powerups[randomObjectIndex];
             Instantiate(objectToDrop, this.transform.position, Quaternion.identity);

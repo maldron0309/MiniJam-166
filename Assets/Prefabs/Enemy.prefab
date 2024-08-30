@@ -296,13 +296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e7cf58be873fc4d80f88cb8d633004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  lifebarFilling: {fileID: 3054269926834240409}
+  dropPercentage: 40
   powerups:
   - {fileID: 3082667988953071462, guid: 85075268bc5e46746be194b0bb292176, type: 3}
-  life: 3
-  lifebarFilling: {fileID: 3054269926834240409}
-  direction: {x: 1, y: 0}
-  dropPercentage: 40
+  - {fileID: 6509742430377534965, guid: f15ef50e052ea9e43a7ef3dda87866e4, type: 3}
 --- !u!1 &5868592114416958853
 GameObject:
   m_ObjectHideFlags: 0
