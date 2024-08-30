@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1894231697256221965}
   - component: {fileID: 1145656432088011562}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6.7817445, y: 0.15098482, z: 0.008702199}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2308473600782729480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2308473600782729480}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LifeBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 6.82, y: 0.61, z: -0.008702199}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1894231697256221965}
   - {fileID: 3054269926834240409}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 3735275760962861826}
   - component: {fileID: 7506758668965857752}
   - component: {fileID: 8045515517368427182}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -150,8 +150,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.134122, y: -0.4536489, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2308473600782729480}
   m_Father: {fileID: 0}
@@ -224,10 +224,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -299,6 +299,7 @@ MonoBehaviour:
   speed: 5
   life: 3
   lifebarFilling: {fileID: 3054269926834240409}
+  direction: {x: 1, y: 0}
 --- !u!1 &5868592114416958853
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3054269926834240409}
   - component: {fileID: 3448888977971834155}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Filling
   m_TagString: Untagged
   m_Icon: {fileID: 0}

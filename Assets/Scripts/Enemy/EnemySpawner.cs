@@ -33,6 +33,8 @@ public class EnemySpawner : MonoBehaviour
         int randomObjectIndex = Random.Range(0, objectsToSpawn.Count);
         GameObject objectToSpawn = objectsToSpawn[randomObjectIndex];
 
-        Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
+        GameObject newEnemyObject = Instantiate(objectToSpawn, spawnPoint.position, spawnPoint.rotation);
+        Enemy newEnemy = newEnemyObject.GetComponent<Enemy>();
+        newEnemy.Initialize(spawnPoint.right * -1);
     }
 }
