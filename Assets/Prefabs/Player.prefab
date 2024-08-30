@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 1877361993301623108}
   - component: {fileID: 7554175855095129738}
   - component: {fileID: 6443363746990812189}
+  - component: {fileID: 5733983434152911633}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -240,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragg: 1
+  spawnDelay: 1
   speed: 5
   input: {fileID: 0}
   sprite: {fileID: 0}
@@ -259,3 +261,15 @@ MonoBehaviour:
   projectile: {fileID: 7579698565906691957, guid: 0d92252b2d16b5c49a32a6336d1d9415, type: 3}
   firePoint: {fileID: 1931665076409416296}
   projectileSpeed: 10
+--- !u!114 &5733983434152911633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5890159759888138546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef7ab234a8da14d48ab9d7255524f525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
