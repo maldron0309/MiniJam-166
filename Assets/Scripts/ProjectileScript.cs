@@ -21,4 +21,13 @@ public class ProjectileScript : MonoBehaviour
     {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<Enemy>().GetDamage(1);
+            Destroy(gameObject);
+        }
+    }
 }

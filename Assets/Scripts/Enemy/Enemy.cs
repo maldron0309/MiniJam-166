@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 2f; 
+    public float speed = 2f;
+    [SerializeField] private int life = 3;
 
     void Update()
     {
@@ -13,4 +14,13 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void GetDamage(int damage){
+        life -= damage;
+        if(life <= 0){
+            Destroy(gameObject);
+        }
+    }
+
+
 }
