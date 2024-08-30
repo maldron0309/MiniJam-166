@@ -7,12 +7,17 @@ public class PowerUpManager : MonoBehaviour
     [SerializeField] private float shieldTime = 5f;
     [SerializeField] private float speedIncrease = 10f;
     [SerializeField] private float speedTime = 5f;
+    [SerializeField] private int strengthIncrease = 3;
+    [SerializeField] private float  strengthTime = 5f;
     private PlayerMovement playerMovement;
+    private ShootingScript projectileScript;
     private Coroutine shieldCoroutine = null;
     private Coroutine speedCoroutine = null;
+    private Coroutine strengthCoroutine = null;
 
     void Start(){
         playerMovement = GetComponent<PlayerMovement>();
+        projectileScript = GetComponent<ShootingScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D other){
@@ -25,8 +30,8 @@ public class PowerUpManager : MonoBehaviour
                 case "SpeedPowerUp":
                     IncreaseSpeed();
                     break;
-                case "HealthPowerUp":
-                    GainHealth();
+                case "StrengthPowerUp":
+                    IncreaseStrength();
                     break;
                 default:
                     Debug.Log("Unknown powerup: " + powerup);
@@ -73,8 +78,22 @@ public class PowerUpManager : MonoBehaviour
         }
     }
 
-    private void GainHealth(){
-        
+    private void IncreaseStrength(){
+        if(projectileScript != null){
+            if(strengthCoroutine != null){
+                StopCoroutine(strengthCoroutine);                
+            }
+            else{
+                   projectileScript.IncreaseStrength(strengthIncrease);
+            }
+
+            strengthCoroutine = StartCoroutine(Deactivate(strengthTime, "strength"));            
+        }
+    }
+    private void DeactivateStrength(){
+        if(projectileScript!= null){
+            projectileScript.IncreaseStrength(-1);
+        }
     }
 
     private IEnumerator Deactivate(float delay, string whatToCall){
@@ -84,10 +103,13 @@ public class PowerUpManager : MonoBehaviour
                 DeactivateShield();
                 shieldCoroutine = null;
                 break;
-                
             case "speed":
                 DeactivateSpeed();
                 speedCoroutine = null;
+                break;
+            case "strength":
+                DeactivateStrength();
+                strengthCoroutine = null;
                 break;
             default:
                 Debug.Log("Unknown powerup deactivation: " + whatToCall);
