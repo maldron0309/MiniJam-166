@@ -13,12 +13,4 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Earth"))
-        {
-            Debug.Log("Test");
-        }
-    }
 }
