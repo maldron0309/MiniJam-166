@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     private Vector2 movement;
     private Rigidbody2D rb;
+    private bool shieldUp = false;
+
 
     private void Awake()
     {
@@ -53,7 +56,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Enemy")){
-            StartCoroutine(Die());
+            if(!shieldUp){
+                StartCoroutine(Die());
+            }
+            else{
+                other.GetComponent<Enemy>().GetDamage(2);
+                Vector2 direction = (other.GetComponent<Transform>().position - this.transform.position).normalized;
+                rb.AddForce(direction * 50);
+            }
         }
     }
 
@@ -64,6 +74,16 @@ public class PlayerMovement : MonoBehaviour
         transform.position = spawnPoint.position;
         sprite.enabled = true;
         input.enabled = true;
+    }
+
+    public void ToggleShield(){
+        shieldUp =! shieldUp;
+        if(shieldUp){
+            sprite.color = Color.blue;
+        }
+        else{
+            sprite.color = Color.white;
+        }
     }
 
     

@@ -297,9 +297,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  powerups:
+  - {fileID: 3082667988953071462, guid: 85075268bc5e46746be194b0bb292176, type: 3}
   life: 3
   lifebarFilling: {fileID: 3054269926834240409}
   direction: {x: 1, y: 0}
+  dropPercentage: 40
 --- !u!1 &5868592114416958853
 GameObject:
   m_ObjectHideFlags: 0
