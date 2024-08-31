@@ -9,8 +9,9 @@ public class SceneManagerScript : MonoBehaviour
         SceneManager.LoadScene("Ferran Trial");
     }
 
-    public void GoToMainMenu(){
-
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void RestartGame(){
