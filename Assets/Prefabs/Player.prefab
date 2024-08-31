@@ -247,6 +247,7 @@ MonoBehaviour:
   input: {fileID: 0}
   sprite: {fileID: 0}
   spawnPoint: {fileID: 0}
+  crashClip: {fileID: 8300000, guid: 9f57439a9e483c04daf7e3063e7a7a56, type: 3}
 --- !u!114 &6443363746990812189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,9 +262,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 7579698565906691957, guid: 0d92252b2d16b5c49a32a6336d1d9415, type: 3}
   firePoint: {fileID: 1931665076409416296}
-  projectileSpeed: 10
+  projectileSpeed: 15
   projectileStrength: 1
-  shootClip: {fileID: 8300000, guid: dc57b881358336e44a95372dda30a272, type: 3}
+  shootClip: {fileID: 8300000, guid: 4dffa4938a73c9c489581cdfc85ca9c0, type: 3}
 --- !u!114 &5733983434152911633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +285,14 @@ MonoBehaviour:
   strengthTime: 5
   enemySpeedIncrease: 1.5
   enemySpeedTime: 5
-  shieldClip: {fileID: 0}
+  shieldClip: {fileID: 8300000, guid: 79f6e2a5eae208c4794b9cc2b01b33c1, type: 3}
+  shieldDownClip: {fileID: 8300000, guid: 913876c884a63ff40809d769b3f899ee, type: 3}
+  speedUpClip: {fileID: 8300000, guid: ff3e65d00b3537448a421953292fa126, type: 3}
+  speedDownClip: {fileID: 8300000, guid: bd005cddb81f4804fb4f1bda00a867a8, type: 3}
+  strengthClip: {fileID: 8300000, guid: c874b0ef66f94ce4b95f2284033ef6d1, type: 3}
+  strenghDownClip: {fileID: 8300000, guid: b2c0340a7e790c84b86d9943bd160754, type: 3}
+  enemySpeedClip: {fileID: 8300000, guid: 8de3c08f41f926c46a62b064ce57bdd6, type: 3}
+  xpClip: {fileID: 8300000, guid: ee7e4e7f3b2a7ae4ea835d12d8fb3c22, type: 3}
 --- !u!82 &3795928482228518553
 AudioSource:
   m_ObjectHideFlags: 0

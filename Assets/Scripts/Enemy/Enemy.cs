@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,10 +14,14 @@ public class Enemy : MonoBehaviour
     private int maxHealth;
     private ScoreManagerScript scoreManager;
 
+    private AudioSource source;
+    [SerializeField] private AudioClip hitClip;
+    [SerializeField] private AudioClip deathClip;
+
     void Start(){
         maxHealth = life;
         rb = GetComponent<Rigidbody2D>();
-
+        source = GetComponent<AudioSource>();
     }
 
     public void Initialize(Vector2 dir, float time){
@@ -38,6 +43,9 @@ public class Enemy : MonoBehaviour
         if(damage == 1000000){
             drop = false;
         }
+        if(drop && life > 0){
+            source.PlayOneShot(hitClip);
+        }
         if(life <= 0){
             Die(drop);
         }
@@ -51,6 +59,19 @@ public class Enemy : MonoBehaviour
             Instantiate(objectToDrop, this.transform.position, Quaternion.identity);
             scoreManager.EnemyKilled();
         }
+        if(drop){
+        source.PlayOneShot(deathClip);
+        }
+        StartCoroutine(Destroying());
+        speed = 0;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        GameObject livebar = gameObject.transform.GetChild(0).gameObject;
+        Destroy(livebar);
+    }
+
+    IEnumerator Destroying(){
+        yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }
 

@@ -20,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool shieldUp = false;
 
+    private AudioSource source;
+    //[SerializeField] private AudioClip moveClip;
+    [SerializeField] private AudioClip crashClip;
+
 
     private void Awake()
     {
@@ -27,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
         input = GetComponent<PlayerInput>();
         sprite = GetComponent<SpriteRenderer>();
         originalSpeed = speed;
+        source = GetComponent<AudioSource>();
     }
 
     private void Update(){
@@ -48,7 +53,13 @@ public class PlayerMovement : MonoBehaviour
             //Movement type 2: Dragg, the player slows down when no input is given
             if(movement.x != 0 || movement.y != 0){
                 rb.linearVelocity = movement * speed;
-            }
+            //     if(!source.isPlaying){
+            //         source.PlayOneShot(moveClip);
+            //     }
+             }
+            // else{
+            //     source.Stop();
+            // }
         }
     }
 
@@ -60,9 +71,10 @@ public class PlayerMovement : MonoBehaviour
         if(other.CompareTag("Enemy")){
             if(!shieldUp){
                 StartCoroutine(Die());
+                source.PlayOneShot(crashClip);
             }
             else{
-                other.GetComponent<Enemy>().GetDamage(2);
+                other.GetComponent<Enemy>().GetDamage(100);
                 Vector2 direction = (other.GetComponent<Transform>().position - this.transform.position).normalized;
                 rb.AddForce(direction * 50);
             }

@@ -21,6 +21,14 @@ public class PowerUpManager : MonoBehaviour
     private Coroutine enemySpeedCoroutine = null;
     private AudioSource source;
     [SerializeField] private AudioClip shieldClip;
+    [SerializeField] private AudioClip shieldDownClip;
+    [SerializeField] private AudioClip speedUpClip;
+    [SerializeField] private AudioClip speedDownClip;
+    [SerializeField] private AudioClip strengthClip;
+    [SerializeField] private AudioClip strenghDownClip;
+    [SerializeField] private AudioClip enemySpeedClip;
+    [SerializeField] private AudioClip xpClip;
+
 
     void Start(){
         playerMovement = GetComponent<PlayerMovement>();
@@ -47,6 +55,7 @@ public class PowerUpManager : MonoBehaviour
                     break;
                 case "ScorePowerUp":
                     scoreManager.PowerUp();
+                    source.PlayOneShot(xpClip);
                     break;
                 default:
                     Debug.Log("Unknown powerup: " + powerup);
@@ -68,12 +77,18 @@ public class PowerUpManager : MonoBehaviour
             else{
                 playerMovement.SetSpeed(speedIncrease);
             }
+            if(speedUpClip!=null){
+                source.PlayOneShot(speedUpClip);
+            }
             speedCoroutine = StartCoroutine(Deactivate(speedTime, "speed"));
         }
     }
     private void DeactivateSpeed(){
         if(playerMovement!= null){
             playerMovement.SetSpeed(-1);
+        }
+        if(speedDownClip!=null){
+            source.PlayOneShot(speedDownClip);
         }
     }
 
@@ -96,6 +111,9 @@ public class PowerUpManager : MonoBehaviour
         if(playerMovement != null){
             playerMovement.ToggleShield();
         }
+        if(shieldDownClip!=null){
+            source.PlayOneShot(shieldDownClip);
+        }
     }
 
     private void IncreaseStrength(){
@@ -107,12 +125,19 @@ public class PowerUpManager : MonoBehaviour
                    projectileScript.IncreaseStrength(strengthIncrease);
             }
 
+            if(strengthClip!=null){
+                source.PlayOneShot(strengthClip);
+            }
+
             strengthCoroutine = StartCoroutine(Deactivate(strengthTime, "strength"));            
         }
     }
     private void DeactivateStrength(){
         if(projectileScript!= null){
             projectileScript.IncreaseStrength(-1);
+        }
+        if(strenghDownClip!=null){
+            source.PlayOneShot(strenghDownClip);
         }
     }
 
@@ -126,6 +151,11 @@ public class PowerUpManager : MonoBehaviour
                     enemy.GetComponent<Enemy>().IncreaseSpeed(enemySpeedIncrease);
                 }
             }
+
+            if(enemySpeedClip!=null){
+                source.PlayOneShot(enemySpeedClip);
+            }
+
             enemySpeedCoroutine = StartCoroutine(Deactivate(enemySpeedTime, "enemiesSpeed"));
         }
     }
