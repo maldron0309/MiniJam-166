@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class ShootingScript : MonoBehaviour
 {
+    public GameObject pause;
 
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform firePoint;
@@ -17,7 +18,7 @@ public class ShootingScript : MonoBehaviour
     }
 
     private void OnAttack(InputValue value){
-        if(firePoint != null && projectile != null){
+        if(firePoint != null && projectile != null && !pause.activeInHierarchy){
             GameObject newProjectileObject = Instantiate(projectile, firePoint.position, firePoint.rotation);
             ProjectileScript newProjectile = newProjectileObject.GetComponent<ProjectileScript>();
             newProjectile.Initialize(firePoint.right, projectileSpeed, projectileStrength);

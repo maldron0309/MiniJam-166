@@ -9,11 +9,19 @@ public class LivesManagerScript : MonoBehaviour
     [SerializeField] private GameObject two;
     [SerializeField] private GameObject three;
 
+    private AudioSource source;
+    [SerializeField] private AudioClip clip;
 
+
+
+    void Start(){
+        source = GetComponent<AudioSource>();
+    }
     private void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Enemy")){
             lives--;
             other.GetComponent<Enemy>().GetDamage(1000000);
+            source.PlayOneShot(clip);
             if(lives < 0){
                 SceneManager.LoadScene("GameOverScene");
             }
