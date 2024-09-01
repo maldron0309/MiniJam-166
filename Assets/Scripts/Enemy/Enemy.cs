@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
         float healthPercent = (float)life / maxHealth;
         lifebarFilling.localScale = new Vector2(healthPercent, lifebarFilling.localScale.y);
         StartCoroutine(Squish());
+        CameraScript.Instance.TriggerShake(0.1f, 0.1f);
 
         bool drop = true;
         if(damage == 1000000){
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour
         if (isDrop <= dropPercentage && drop){
             int randomObjectIndex = Random.Range(0, powerups.Count);
             GameObject objectToDrop = powerups[randomObjectIndex];
-            Instantiate(objectToDrop, this.transform.position, Quaternion.identity);
+            Instantiate(objectToDrop, this.transform.position, objectToDrop.transform.rotation);
             scoreManager.EnemyKilled();
         }
         if(drop){
