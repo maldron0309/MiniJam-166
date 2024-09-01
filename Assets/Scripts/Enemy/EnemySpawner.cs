@@ -27,6 +27,9 @@ public class EnemySpawner : MonoBehaviour
             minSpawnDelay = 0.5f;
             maxSpawnDelay = 2.5f;
         }
+        if(timeAlive > 100){
+            maxSpawnDelay = 1.5f;
+        }
         timeAlive += Time.deltaTime;
     }
 
