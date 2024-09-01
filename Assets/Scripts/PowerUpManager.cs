@@ -63,7 +63,7 @@ public class PowerUpManager : MonoBehaviour
                     EnemySpeed();
                     break;
                 case "ScorePowerUp":
-                    scoreManager.PowerUp();
+                    scoreManager.PowerUp(other.gameObject.transform);
                     source.PlayOneShot(xpClip);
                     break;
                 default:
