@@ -19,6 +19,7 @@ public class LivesManagerScript : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Enemy")){
+            CameraScript.Instance.TriggerShake(0.2f, 2);
             lives--;
             other.GetComponent<Enemy>().GetDamage(1000000);
             source.PlayOneShot(clip);

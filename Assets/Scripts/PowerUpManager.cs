@@ -1,9 +1,18 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour
 {
+    public Text shieldText;
+    public Text speedText;
+    public Text strenghtText;
+    public Text enemiesText;
+    private Coroutine shieldTCoroutine = null;
+    private Coroutine speedTCoroutine = null;
+    private Coroutine strengthTCoroutine = null;
+    private Coroutine enemySpeedTCoroutine = null;
     private ScoreManagerScript scoreManager;
     [SerializeField] private GameObject enemies;
     [SerializeField] private float shieldTime = 5f;
@@ -76,10 +85,15 @@ public class PowerUpManager : MonoBehaviour
             }
             else{
                 playerMovement.SetSpeed(speedIncrease);
+                if(speedText!=null && speedTCoroutine == null){
+                    speedText.gameObject.SetActive(true);
+                    speedTCoroutine = StartCoroutine(DeactivateText(speedText, "speed"));
+                }
             }
             if(speedUpClip!=null){
                 source.PlayOneShot(speedUpClip);
             }
+            
             speedCoroutine = StartCoroutine(Deactivate(speedTime, "speed"));
         }
     }
@@ -98,7 +112,11 @@ public class PowerUpManager : MonoBehaviour
                 StopCoroutine(shieldCoroutine);               
             }
             else{
-                playerMovement.ToggleShield();   
+                playerMovement.ToggleShield();  
+                if(shieldText!=null && shieldTCoroutine == null){
+                    shieldText.gameObject.SetActive(true);
+                    shieldTCoroutine = StartCoroutine(DeactivateText(shieldText, "shield"));
+                }
             }
             
             if(shieldClip!=null){
@@ -122,7 +140,11 @@ public class PowerUpManager : MonoBehaviour
                 StopCoroutine(strengthCoroutine);                
             }
             else{
-                   projectileScript.IncreaseStrength(strengthIncrease);
+                projectileScript.IncreaseStrength(strengthIncrease);
+                if(strenghtText!=null && strengthTCoroutine == null){
+                strenghtText.gameObject.SetActive(true);
+                strengthTCoroutine = StartCoroutine(DeactivateText(strenghtText, "strength"));
+                }
             }
 
             if(strengthClip!=null){
@@ -149,6 +171,10 @@ public class PowerUpManager : MonoBehaviour
             else{
                 foreach(Transform enemy in enemies.transform){
                     enemy.GetComponent<Enemy>().IncreaseSpeed(enemySpeedIncrease);
+                }
+                if(enemiesText!=null && enemySpeedTCoroutine == null){
+                    enemiesText.gameObject.SetActive(true);
+                    enemySpeedTCoroutine = StartCoroutine(DeactivateText(enemiesText, "enemies"));
                 }
             }
 
@@ -188,6 +214,28 @@ public class PowerUpManager : MonoBehaviour
                 break;
             default:
                 Debug.Log("Unknown powerup deactivation: " + whatToCall);
+                break;
+        }
+    }
+
+    private IEnumerator DeactivateText(Text text, string whatToCall){
+        yield return new WaitForSeconds(2);
+        text.gameObject.SetActive(false);
+        switch (whatToCall){
+            case "speed":
+                speedTCoroutine = null;
+                break;
+            case "shield":
+                shieldTCoroutine = null;
+                break;
+            case "strength":
+                strengthTCoroutine = null;
+                break;
+            case "enemies":
+                enemySpeedTCoroutine = null;
+                break;
+            default:
+                Debug.Log("Unknown text: " + text);
                 break;
         }
     }

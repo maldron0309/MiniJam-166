@@ -22,7 +22,7 @@ public class ShootingScript : MonoBehaviour
             GameObject newProjectileObject = Instantiate(projectile, firePoint.position, firePoint.rotation);
             ProjectileScript newProjectile = newProjectileObject.GetComponent<ProjectileScript>();
             newProjectile.Initialize(firePoint.right, projectileSpeed, projectileStrength);
-            source.PlayOneShot(shootClip);
+            source.PlayOneShot(shootClip, 0.7f);
         }
     }
 

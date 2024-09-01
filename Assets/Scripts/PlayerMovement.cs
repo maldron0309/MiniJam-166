@@ -53,13 +53,7 @@ public class PlayerMovement : MonoBehaviour
             //Movement type 2: Dragg, the player slows down when no input is given
             if(movement.x != 0 || movement.y != 0){
                 rb.linearVelocity = movement * speed;
-            //     if(!source.isPlaying){
-            //         source.PlayOneShot(moveClip);
-            //     }
              }
-            // else{
-            //     source.Stop();
-            // }
         }
     }
 
@@ -70,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Enemy")){
             if(!shieldUp){
+                CameraScript.Instance.TriggerShake(0.1f, 0.5f);
                 StartCoroutine(Die());
                 source.PlayOneShot(crashClip);
             }
