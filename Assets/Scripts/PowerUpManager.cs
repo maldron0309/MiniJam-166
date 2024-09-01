@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PowerUpManager : MonoBehaviour
 {
+    public GameObject shieldIcon;
+    public GameObject speedIcon;
+    public GameObject strengthIcon;
+    public GameObject enemyIcon;
     public Text shieldText;
     public Text speedText;
     public Text strenghtText;
@@ -89,6 +93,9 @@ public class PowerUpManager : MonoBehaviour
                     speedText.gameObject.SetActive(true);
                     speedTCoroutine = StartCoroutine(DeactivateText(speedText, "speed"));
                 }
+                if(speedIcon!=null){
+                    speedIcon.gameObject.SetActive(true);
+                }
             }
             if(speedUpClip!=null){
                 source.PlayOneShot(speedUpClip);
@@ -104,6 +111,9 @@ public class PowerUpManager : MonoBehaviour
         if(speedDownClip!=null){
             source.PlayOneShot(speedDownClip);
         }
+        if(speedIcon!=null){
+            speedIcon.gameObject.SetActive(false);
+        }
     }
 
     private void Shield(){
@@ -116,6 +126,9 @@ public class PowerUpManager : MonoBehaviour
                 if(shieldText!=null && shieldTCoroutine == null){
                     shieldText.gameObject.SetActive(true);
                     shieldTCoroutine = StartCoroutine(DeactivateText(shieldText, "shield"));
+                }
+                if(shieldIcon!=null){
+                    shieldIcon.gameObject.SetActive(true);
                 }
             }
             
@@ -132,6 +145,9 @@ public class PowerUpManager : MonoBehaviour
         if(shieldDownClip!=null){
             source.PlayOneShot(shieldDownClip);
         }
+        if(shieldIcon!=null){
+            shieldIcon.gameObject.SetActive(false);
+        }
     }
 
     private void IncreaseStrength(){
@@ -142,8 +158,11 @@ public class PowerUpManager : MonoBehaviour
             else{
                 projectileScript.IncreaseStrength(strengthIncrease);
                 if(strenghtText!=null && strengthTCoroutine == null){
-                strenghtText.gameObject.SetActive(true);
-                strengthTCoroutine = StartCoroutine(DeactivateText(strenghtText, "strength"));
+                    strenghtText.gameObject.SetActive(true);
+                    strengthTCoroutine = StartCoroutine(DeactivateText(strenghtText, "strength"));
+                }
+                if(strengthIcon!=null){
+                    strengthIcon.gameObject.SetActive(true);
                 }
             }
 
@@ -161,6 +180,10 @@ public class PowerUpManager : MonoBehaviour
         if(strenghDownClip!=null){
             source.PlayOneShot(strenghDownClip);
         }
+        if(strengthIcon!=null){
+            strengthIcon.gameObject.SetActive(false);
+    
+        }
     }
 
     private void EnemySpeed(){
@@ -176,6 +199,9 @@ public class PowerUpManager : MonoBehaviour
                     enemiesText.gameObject.SetActive(true);
                     enemySpeedTCoroutine = StartCoroutine(DeactivateText(enemiesText, "enemies"));
                 }
+                if(enemyIcon!=null){
+                    enemyIcon.gameObject.SetActive(true);
+                }
             }
 
             if(enemySpeedClip!=null){
@@ -189,6 +215,9 @@ public class PowerUpManager : MonoBehaviour
         if(enemies!= null){
             foreach(Transform enemy in enemies.transform){
                 enemy.GetComponent<Enemy>().IncreaseSpeed(1/enemySpeedIncrease);
+            }
+            if(enemyIcon!=null){
+                enemyIcon.gameObject.SetActive(false);
             }
         }
     }
