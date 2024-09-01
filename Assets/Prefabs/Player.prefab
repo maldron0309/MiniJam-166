@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828f0379b7ce53a488b50354b009651b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pause: {fileID: 0}
   projectile: {fileID: 7579698565906691957, guid: 0d92252b2d16b5c49a32a6336d1d9415, type: 3}
   firePoint: {fileID: 1931665076409416296}
   projectileSpeed: 15
