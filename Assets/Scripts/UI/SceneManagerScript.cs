@@ -5,6 +5,10 @@ public class SceneManagerScript : MonoBehaviour
 {
     public GameObject canvas;
 
+    private void Awake() {
+        Time.timeScale = 1;
+    }
+
     public void GoToPlayScene(){
         SceneManager.LoadScene("Ferran Trial");
     }
@@ -35,6 +39,7 @@ public class SceneManagerScript : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+
 
     public void QuitGame(){
         Application.Quit();
