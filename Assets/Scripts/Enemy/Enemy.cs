@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     public void Initialize(Vector2 dir, float time){
         direction = dir;
-        speed = Random.Range(0.8f + (time /10), 3 + (time /10));
+        speed = 1f + (time /20);
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManagerScript>();
     }
 
@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         float healthPercent = (float)life / maxHealth;
         lifebarFilling.localScale = new Vector2(healthPercent, lifebarFilling.localScale.y);
         StartCoroutine(Squish());
-        CameraScript.Instance.TriggerShake(0.1f, 0.1f);
+        CameraScript.Instance.TriggerShake(0.1f, 0.05f);
 
         bool drop = true;
         if(damage == 1000000){

@@ -10,9 +10,9 @@ public class EnemySpawner : MonoBehaviour
     public float minSpawnDelay = 1f; 
     public float maxSpawnDelay = 5f; 
     public Transform parent;
-    public int moreSpawnsTime = 20;
+    public int moreSpawnsTime = 30;
 
-    void Start()
+    void Awake()
     {
         StartCoroutine(SpawnEnemies());
         minSpawnDelay = 1f;

@@ -22,6 +22,10 @@ public class SceneManagerScript : MonoBehaviour
         OnPause();
     }
 
+    public void GoToLeaderboard(){
+        SceneManager.LoadScene("LeaderboardScene");
+    }
+
     private void OnPause(){
         if(canvas.activeInHierarchy){
             canvas.SetActive(false);
@@ -30,5 +34,9 @@ public class SceneManagerScript : MonoBehaviour
             canvas.SetActive(true);
             Time.timeScale = 0;
         }
+    }
+
+    public void QuitGame(){
+        Application.Quit();
     }
 }
