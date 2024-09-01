@@ -18,10 +18,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private AudioClip hitClip;
     [SerializeField] private AudioClip deathClip;
 
+    private ParticleSystem particleSystem;
+
     void Start(){
         maxHealth = life;
         rb = GetComponent<Rigidbody2D>();
         source = GetComponent<AudioSource>();
+        particleSystem = this.GetComponent<ParticleSystem>();
     }
 
     public void Initialize(Vector2 dir, float time){
@@ -39,6 +42,8 @@ public class Enemy : MonoBehaviour
         life -= damage;
         float healthPercent = (float)life / maxHealth;
         lifebarFilling.localScale = new Vector2(healthPercent, lifebarFilling.localScale.y);
+        StartCoroutine(Squish());
+
         bool drop = true;
         if(damage == 1000000){
             drop = false;
@@ -71,8 +76,18 @@ public class Enemy : MonoBehaviour
     }
 
     IEnumerator Destroying(){
-        yield return new WaitForSeconds(2);
+        particleSystem.Play();
+        yield return new WaitForSeconds(0.3f);
+        particleSystem.Stop();
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
+    }
+
+    private IEnumerator Squish(){
+            transform.localScale = new Vector3(transform.localScale.x / 1.2f, transform.localScale.y / 1.2f, transform.localScale.z);
+            yield return new WaitForSeconds(0.2f);
+            transform.localScale = new Vector3(transform.localScale.x * 1.2f, transform.localScale.y * 1.2f, transform.localScale.z);
+            yield return new WaitForSeconds(0.2f);
     }
 
     public void IncreaseSpeed(float s) {
