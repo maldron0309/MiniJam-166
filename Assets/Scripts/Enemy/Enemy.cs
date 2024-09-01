@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -63,10 +64,10 @@ public class Enemy : MonoBehaviour
             int randomObjectIndex = Random.Range(0, powerups.Count);
             GameObject objectToDrop = powerups[randomObjectIndex];
             Instantiate(objectToDrop, this.transform.position, objectToDrop.transform.rotation);
-            scoreManager.EnemyKilled();
         }
         if(drop){
-        source.PlayOneShot(deathClip);
+            source.PlayOneShot(deathClip);
+            scoreManager.EnemyKilled(this.transform);
         }
         StartCoroutine(Destroying());
         speed = 0;
