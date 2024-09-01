@@ -12,7 +12,7 @@ public class ScoreManagerScript : MonoBehaviour
     [SerializeField] private Text scoreText;
     private float timeBuffer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         score = 0;
         timeBuffer = 0;
@@ -48,7 +48,7 @@ public class ScoreManagerScript : MonoBehaviour
 
     public void PowerUp(Transform power){
         score += powerupValue * (int) ((Time.time / 20)+1);
-        xpText.text =  (enemyValue * (int) ((Time.time / 10)+1)).ToString();
+        xpText.text =  (powerupValue * (int) ((Time.time / 10)+1)).ToString();
         xpText.transform.position = Camera.main.WorldToScreenPoint(power.position);
         xpText.gameObject.SetActive(true);
         if(coroutine == null){

@@ -67,11 +67,10 @@ public class PlayerMovement : MonoBehaviour
                 CameraScript.Instance.TriggerShake(0.1f, 0.5f);
                 StartCoroutine(Die());
                 source.PlayOneShot(crashClip);
+                other.GetComponent<Enemy>().GetDamage(100);
             }
             else{
                 other.GetComponent<Enemy>().GetDamage(100);
-                Vector2 direction = (other.GetComponent<Transform>().position - this.transform.position).normalized;
-                rb.AddForce(direction * 50);
             }
         }
     }

@@ -278,13 +278,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7ab234a8da14d48ab9d7255524f525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldIcon: {fileID: 0}
+  speedIcon: {fileID: 0}
+  strengthIcon: {fileID: 0}
+  enemyIcon: {fileID: 0}
+  shieldText: {fileID: 0}
+  speedText: {fileID: 0}
+  strenghtText: {fileID: 0}
+  enemiesText: {fileID: 0}
   enemies: {fileID: 0}
-  shieldTime: 5
-  speedIncrease: 10
-  speedTime: 5
+  shieldTime: 10
+  speedIncrease: 8
+  speedTime: 8
   strengthIncrease: 3
-  strengthTime: 5
-  enemySpeedIncrease: 1.5
+  strengthTime: 8
+  enemySpeedIncrease: 2
   enemySpeedTime: 5
   shieldClip: {fileID: 8300000, guid: 79f6e2a5eae208c4794b9cc2b01b33c1, type: 3}
   shieldDownClip: {fileID: 8300000, guid: 913876c884a63ff40809d769b3f899ee, type: 3}
